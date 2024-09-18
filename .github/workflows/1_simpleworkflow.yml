@@ -1,0 +1,11 @@
+name: 02-01-Simple Workflow
+on: push
+jobs: 
+  my-first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World"
+  my-second-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Bye World"
