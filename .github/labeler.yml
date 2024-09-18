@@ -1,0 +1,5 @@
+# Add 'Documentation' label to any file changes within ‘Docs' folder
+Documentation:
+- changed-files:
+  - any-glob-to-any-file:
+	- Docs/*
