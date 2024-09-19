@@ -1,9 +1,10 @@
 name: 08-03-Contexts - Inputs
 
 on:
-  push:
   workflow_dispatch:
     inputs:
+      somevalue:
+        type: string
       debug:
         type: boolean
         default: false
