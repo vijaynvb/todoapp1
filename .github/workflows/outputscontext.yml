@@ -1,0 +1,17 @@
+name: 08-04-Contexts - Outputs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Define Workflow Variable
+        id: set_var
+        run: |
+          echo "Setting Workflow Variable"
+          echo "name=Max" >> "$GITHUB_OUTPUT"
+      - name: Use Workflow Variable
+        run: |
+          echo "Workflow Variable Value: ${{ steps.set_var.outputs.name }}"
