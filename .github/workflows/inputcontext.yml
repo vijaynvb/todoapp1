@@ -1,0 +1,17 @@
+name: 08-03-Contexts - Inputs
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Workflow Input
+        run: |
+          echo "DEBUG: ${{ inputs.debug }}"
