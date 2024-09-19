@@ -2,7 +2,7 @@
 
 ## Step-by-Step Guide to Clone and Push a TodoApp Project
 
-### Step 1: Clone the Existing Repository
+### Step 1: Clone the Existing Repository 
 
 1. Open your terminal (or Git Bash on Windows).
 2. Clone the provided repository containing the `src` folder using the following command:
