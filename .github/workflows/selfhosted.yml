@@ -1,0 +1,8 @@
+name: selfhostedwf
+on: workflow_dispatch
+jobs: 
+  my-first-job:
+    runs-on: self-hosted
+    steps:
+      - run: dir
+ 
