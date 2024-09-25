@@ -2,6 +2,15 @@ name: CustomActions-Composite
 run-name: CustomActions-Composite
 on:
   workflow_dispatch:
+    inputs: 
+      java-version:
+        description: 'Java version to use'
+        default: '16'
+        required: true
+      working-dir:
+        description: The working directory of the application
+        default: .
+        required: false
 
 env:
   working-directory: ./  # Default working directory
@@ -19,7 +28,7 @@ jobs:
       - name: Setup Java & Maven dependencies
         uses: ./.github/actions/anzsetupjava
         with:
-          java-version: 11
+          java-version: ${{ inputs.java-version }}
           working-dir: ${{ env.working-directory }}  # Use specified working directory
 
       # Step 3: Run tests
