@@ -2,7 +2,7 @@ name: ANZ Setup Java
 description: This action allows caching both Java and Maven Dependencies based on the pom.xml file
 
 inputs: 
-  java-version:
+  java-version1:
     description: 'Java version to use'
     default: '11'
     required: true
@@ -15,11 +15,11 @@ runs:
   using: 'composite'
   steps: 
     # Step 1: Setup Java version
-    - name: Setup Java version ${{ inputs.java-version }}
+    - name: Setup Java version ${{ inputs.java-version1 }}
       uses: actions/setup-java@v4
       with:
         distribution: 'adopt'
-        java-version: ${{ inputs.java-version }}
+        java-version: ${{ inputs.java-version1 }}
         #cache: 'maven'   Cache Maven dependencies
 
     # Step 2: Install Dependencies
