@@ -1,0 +1,31 @@
+name: CustomActions-Composite
+run-name: CustomActions-Composite
+on:
+  workflow_dispatch:
+
+env:
+  working-directory: ./  # Default working directory
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout repository
+      - name: checkout repository
+        uses: actions/checkout@v4
+        
+
+      # Step 2: Setup Java & Maven dependencies
+      - name: Setup Java & Maven dependencies
+        uses: ./.github/actions/anzsetupjava
+        with:
+          java-version: 11
+          working-dir: ${{ env.working-directory }}  # Use specified working directory
+
+      # Step 3: Run tests
+      - name: Run tests
+        run: mvn test
+
+      # Step 4: Build with Maven
+      - name: Build with Maven
+        run: mvn clean install
