@@ -50,8 +50,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.run_number }}
-        release_name: Release ${{ github.run_number }}
+        tag_name: ${{ github.ref_type }}
+        release_name: Release ${{ github.ref_type }}
         
     - name: Upload release asset
       uses: actions/upload-release-asset@v1
@@ -60,5 +60,5 @@ jobs:
       with:
         upload_url: ${{ steps.create-new-release.outputs.upload_url }}
         asset_path: ./app.zip
-        asset_name: app-v${{ github.run_number }}.zip
+        asset_name: app-v${{ github.ref_type }}.zip
         asset_content_type: application/zip
