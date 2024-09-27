@@ -37,7 +37,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
-      
+
+      - name: action-maven
+        uses: comchangs/action-maven@v0.4-beta
+          
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
