@@ -1,9 +1,6 @@
 name: Continuous Integration
 
 on:
-  # push:
-  #   branches:
-  #     - main
   workflow_dispatch:
 
 jobs:
@@ -21,14 +18,14 @@ jobs:
       - name: Cache SonarQube packages
         uses: actions/cache@v4.0.2
         with:
-          path: ~/.sonar/cache
+          path: C:\Users\runneradmin\.sonar\cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       
       - name: Cache Maven packages
         uses: actions/cache@v4.0.2
         with:
-          path: ~/.m2
+          path: C:\Users\runneradmin\.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
@@ -43,14 +40,17 @@ jobs:
       
       - name: Install Maven
         run: |
-          if ! command -v mvn &> /dev/null; then
-            echo "Maven not found. Installing Maven..."
-            sudo apt update
-            sudo apt install -y maven
-          else
-            echo "Maven is already installed."
-          fi
-
+          if (-not (Get-Command mvn -ErrorAction SilentlyContinue)) {
+            Write-Host "Maven not found. Installing Maven..."
+            Invoke-WebRequest -Uri "https://downloads.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip" -OutFile "maven.zip"
+            Expand-Archive -Path "maven.zip" -DestinationPath "C:\apache-maven-3.8.6"
+            [System.Environment]::SetEnvironmentVariable('M2_HOME', 'C:\apache-maven-3.8.6', 'Machine')
+            [System.Environment]::SetEnvironmentVariable('Path', $env:Path + ';C:\apache-maven-3.8.6\bin', 'Machine')
+            Write-Host "Maven installed."
+          } else {
+            Write-Host "Maven is already installed."
+          }
+      
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -61,7 +61,7 @@ jobs:
     runs-on: self-hosted
     needs: sonarqube
     steps:
-      - run: mkdir staging && cp target/*.jar staging
+      - run: mkdir staging && cp target\*.jar staging
       - uses: actions/upload-artifact@v4
         with:
           name: Package
