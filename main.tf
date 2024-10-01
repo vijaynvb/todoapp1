@@ -15,9 +15,7 @@ resource "google_container_cluster" "primary" {
       "https://www.googleapis.com/auth/cloud-platform",
     ]
     service_account = var.service_account
-    
-    # Set the disk size to 200GB
-    disk_size_gb = 200
+
   }
 
   deletion_protection = false 
