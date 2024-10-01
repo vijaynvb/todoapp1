@@ -1,0 +1,12 @@
+{
+    "name": "setup-maven",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {},
+    "dependencies": {
+      "@actions/core": "^1.10.0",
+      "@actions/exec": "^1.0.0",
+      "tar": "^6.1.0"
+    }
+  }
+  
