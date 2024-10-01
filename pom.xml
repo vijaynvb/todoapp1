@@ -15,6 +15,9 @@
 	<description>Manage todos</description>
 	<properties>
 		<java.version>11</java.version>
+		<sonar.projectKey>todoapi</sonar.projectKey>
+		<sonar.host.url>http://localhost:9000</sonar.host.url>
+		<sonar.login>sqp_eddd700c29adb22e738b3133c796b9d6f72d3dd3</sonar.login>
 		<sonar.java.binaries>${project.build.directory}/classes</sonar.java.binaries>
 		<sonar.junit.reportPaths>target/surefire-reports</sonar.junit.reportPaths>
 		<!-- JaCoCo Properties -->
@@ -87,10 +90,10 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.sonarsource.scanner.maven</groupId>
-				<artifactId>sonar-maven-plugin</artifactId>
-				<version>3.7.0.1746</version>
-			</plugin>
+        			<groupId>org.sonarsource.scanner.maven</groupId>
+        			<artifactId>sonar-maven-plugin</artifactId>
+        			<version>3.7.0.1746</version>
+      			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
